@@ -7,8 +7,6 @@ import TopDeals from '../components/TopDeals';
 import AssistantHeader from '../components/AssistantHeader';
 
 const SalesPage = () => {
-  const [showDeals, setShowDeals] = React.useState(true);
-
   return (
     <Box sx={{
       display: 'flex',

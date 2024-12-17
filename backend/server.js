@@ -67,6 +67,48 @@ app.post('/api/generate', upload.single('file'), async (req, res) => {
   }
 });
 
+app.post('/api/chat', async (req, res) => {
+  try {
+    const query = req.body.query;
+
+    // Append the new query to the chat history file
+    const chatHistoryPath = 'chat_history.json';
+
+    // Read the existing chat history or initialize an empty array
+    let chatHistory = [];
+    if (fs.existsSync(chatHistoryPath)) {
+      const fileContent = fs.readFileSync(chatHistoryPath, 'utf-8');
+      if (fileContent.trim()) {
+        chatHistory = JSON.parse(fileContent);
+      }
+    }
+
+    // Append the new query to the chat history
+    chatHistory.push({ role: 'user', parts: [{ text: query }] });
+
+    // Write the updated chat history back to the file
+    fs.writeFileSync(chatHistoryPath, JSON.stringify(chatHistory, null, 2));
+
+    // Start a new chat with the history
+    const chat = model.startChat({ history: chatHistory });
+
+    // Send the new message to the AI model
+    const response = await chat.sendMessage(query);
+    const aiResponse = response.response.text();
+
+    // Append the AI response to the chat history
+    chatHistory.push({ role: 'model', parts: [{ text: aiResponse }] });
+
+    // Write the updated chat history back to the file
+    fs.writeFileSync(chatHistoryPath, JSON.stringify(chatHistory, null, 2));
+
+    res.json({ response: aiResponse });
+  } catch (error) {
+    console.error('Error generating content:', error);
+    res.status(500).json({ error: 'Failed to generate content' });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });

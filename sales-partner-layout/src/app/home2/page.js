@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 function App() {
   const [query, setQuery] = useState('');
   const [file, setFile] = useState(null);
+  const [response, setResponse] = useState(null);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -29,7 +30,7 @@ function App() {
       });
 
       const data = await response.json();
-      console.log(data); // Handle the AI response
+      setResponse(data);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -66,6 +67,14 @@ function App() {
       >
         Generate Response
       </Button>
+      <Box sx={{ mt: 4 }}>
+        <Typography variant="h6" gutterBottom>
+          Response:
+        </Typography>
+        <Typography>
+          {response ? response.response : ''}
+        </Typography>
+      </Box>
     </Box>
   );
 }
