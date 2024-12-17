@@ -1,11 +1,10 @@
 'use client'
 import React from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import SalesForm from './components/SalesForm';
-import TopDeals from './components/TopDeals';
-import AssistantHeader from './components/AssistantHeader';
+import SalesForm from '../components/SalesForm';
+import TopDeals from '../components/TopDeals';
+import AssistantHeader from '../components/AssistantHeader';
 
 const SalesPage = () => {
   const [showDeals, setShowDeals] = React.useState(true);
