@@ -23,7 +23,7 @@ function App() {
     formData.append('file', file);
 
     try {
-      const response = await fetch('/api/generate', {
+      const response = await fetch('http://localhost:3001/api/generate', {
         method: 'POST',
         body: formData
       });
@@ -37,7 +37,9 @@ function App() {
 
   return (
     <Box sx={{ p: 4 }}>
-      <Typography variant="h4">AI-Powered Document Assistant</Typography>
+      <Typography variant="h4" gutterBottom>
+        AI-Powered Document Assistant
+      </Typography>
       <TextField
         fullWidth
         placeholder="Enter your query"
@@ -45,12 +47,23 @@ function App() {
         onChange={(e) => setQuery(e.target.value)}
       />
       <Box sx={{ mt: 2 }}>
-        <input type="file" onChange={handleFileChange} hidden />
-        <Button variant="contained" component="label" endIcon={<AttachFileIcon />}>
+        <Button
+          variant="contained"
+          component="label" // Allows the button to act as a file input trigger
+          endIcon={<AttachFileIcon />}
+        >
           Upload Document
+          <input type="file" hidden onChange={handleFileChange} />
         </Button>
+        {file && <Typography sx={{ mt: 1 }}>{file.name}</Typography>}
       </Box>
-      <Button variant="contained" fullWidth sx={{ mt: 2 }} onClick={handleSubmit}>
+      <Button
+        variant="contained"
+        fullWidth
+        sx={{ mt: 2 }}
+        onClick={handleSubmit}
+        disabled={!file || !query} // Disable submit if no file or query
+      >
         Generate Response
       </Button>
     </Box>
