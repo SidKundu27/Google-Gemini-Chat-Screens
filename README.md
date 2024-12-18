@@ -69,15 +69,6 @@ The frontend uses React with Next.js. Follow these steps to set up and run the f
    http://localhost:3000  
    ```  
 
----
-
-## Deliverables  
-
-- GitHub Repository (This project)  
-- Optional Loom video describing the implementation  
-
----
-
 ## Contact  
 
 If you have any questions or require further clarification, please reach out to me.  
