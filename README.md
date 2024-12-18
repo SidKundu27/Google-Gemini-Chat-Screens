@@ -38,6 +38,7 @@ The backend requires a Google API key for accessing AI functionalities. Follow t
 
    ```plaintext
    GOOGLE_AI_API_KEY='yourapikey'
+   PORT='3001'
    ```  
 
 3. Install dependencies and run the backend server:  
