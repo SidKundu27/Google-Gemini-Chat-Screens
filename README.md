@@ -56,15 +56,22 @@ The backend requires a Google API key for accessing AI functionalities. Follow t
 The frontend uses React with Next.js. Follow these steps to set up and run the frontend:  
 
 1. Navigate to the `sales-partner-layout/` folder.  
-2. Install dependencies and start the development server:  
+2. **Create a `.env.local` file** inside the `sales-partner-layout/` folder.  
+3. Add your backend API in the following format:  
+
+   ```plaintext
+   NEXT_PUBLIC_BACKEND_API=http://localhost:3001
+   ```  
+4. Install dependencies and start the development server:  
 
    ```bash
    cd sales-partner-layout
    npm install
+   npm run build
    npm run dev
    ```  
 
-3. Open the application in your browser:  
+5. Open the application in your browser:  
    ```  
    http://localhost:3000  
    ```  

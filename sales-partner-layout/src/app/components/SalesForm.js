@@ -3,13 +3,7 @@ import { TextField, IconButton, Box, Typography, Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 
-const SearchSection = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
-
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
-  };
-
+export default function SearchSection({ query, setQuery, handleSubmit, selectedFile, setFile }) {
   return (
     <Box 
       display="flex" 
@@ -25,12 +19,21 @@ const SearchSection = () => {
         variant="outlined"
         placeholder="Let me know how I can help you!"
         fullWidth
-        InputProps={{
-          endAdornment: (
-            <IconButton>
-              <SendIcon />
-            </IconButton>
-          ),
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        sx={{
+          '& .MuiOutlinedInput-root': {
+            paddingRight: 0,
+          },
+        }}
+        slotProps={{
+          input: {
+            endAdornment: (
+              <IconButton onClick={handleSubmit}>
+                <SendIcon />
+              </IconButton>
+            ),
+          },
         }}
       />
 
@@ -53,7 +56,7 @@ const SearchSection = () => {
           <input
             type="file"
             hidden
-            onChange={handleFileChange}
+            onChange={(e) => setFile(e.target.files[0])}
           />
         </Button>
       </Box>
@@ -67,5 +70,3 @@ const SearchSection = () => {
     </Box>
   );
 };
-
-export default SearchSection;

@@ -20,16 +20,16 @@ const AssistantHeader = () => {
 
       {/* Introduction Text */}
       <Typography variant="h4" color="textPrimary" fontWeight="500">
-        Hi Kim, I’m Tyce, your Sales Partner.
+        Hi, What do you need assistance with today?
       </Typography>
-      <Typography variant="body1" color="textSecondary">
+      {/* <Typography variant="body1" color="textSecondary">
         I’m here to help you sell projects.
-      </Typography>
+      </Typography> */}
 
       {/* Assistance Question */}
-      <Typography variant="h6" color="primary" mt={1}>
+      {/* <Typography variant="h6" color="primary" mt={1}>
         What do you need assistance with today?
-      </Typography>
+      </Typography> */}
     </Box>
   );
 };

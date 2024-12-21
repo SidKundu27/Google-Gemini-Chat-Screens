@@ -24,7 +24,7 @@ function App() {
     formData.append('file', file);
 
     try {
-      const response = await fetch('http://localhost:3001/api/generate', {
+      const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_API + "api/generate", {
         method: 'POST',
         body: formData
       });
